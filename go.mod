@@ -1,4 +1,4 @@
-module metasv-blk-reader
+module github.com/metasv/metasv-blk-reader
 
 go 1.16
 
