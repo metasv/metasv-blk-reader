@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"io"
-	"metasv-blk-reader/blkreader"
+	"github.com/metasv/metasv-blk-reader/blkreader"
 )
 
 func main() {
