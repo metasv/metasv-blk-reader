@@ -18,14 +18,11 @@ type BlockFileReader struct {
 	// magic number for different network
 	Magic uint32
 
-	currentPos int
 	// file reader indicating current file
 	reader *bufio.Reader
 	file   *os.File
 }
 
-//ConcurrentLimit 增加并发数限制
-const ConcurrentLimit = 5
 
 func NewBlockFileReader(dirPath string, fileNumber int, magic uint32) *BlockFileReader {
 	path := filepath.Join(dirPath, fmt.Sprintf("%s%05d.dat", "blk", fileNumber))
@@ -41,7 +38,6 @@ func NewBlockFileReader(dirPath string, fileNumber int, magic uint32) *BlockFile
 		Dir:        dirPath,
 		FileNum:    fileNumber,
 		Magic:      magic,
-		currentPos: 0,
 		reader:     newReader,
 		file:       fileReader,
 	}
