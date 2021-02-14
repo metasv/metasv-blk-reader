@@ -1,4 +1,4 @@
-module awesomeProject1
+module metasv-blk-reader
 
 go 1.16
 

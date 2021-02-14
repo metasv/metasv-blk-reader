@@ -1,9 +1,9 @@
 package main
 
 import (
-	"awesomeProject1/blkreader"
 	"fmt"
 	"io"
+	"metasv-blk-reader/blkreader"
 )
 
 func main() {
