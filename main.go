@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
-	"io"
 	"github.com/metasv/metasv-blk-reader/blkreader"
+	"io"
 )
 
 func main() {
-	reader := blkreader.NewBlockFileReader("./", 2112, blkreader.MainNetMagic)
+	reader := blkreader.NewBlockFileReader("./", 2005, blkreader.MainNetMagic)
 	defer reader.Close()
 	for {
 		block, err := reader.NextBlock()

@@ -23,7 +23,6 @@ type BlockFileReader struct {
 	file   *os.File
 }
 
-
 func NewBlockFileReader(dirPath string, fileNumber int, magic uint32) *BlockFileReader {
 	path := filepath.Join(dirPath, fmt.Sprintf("%s%05d.dat", "blk", fileNumber))
 	log.Printf("Scanning file: %v", path)
@@ -35,11 +34,27 @@ func NewBlockFileReader(dirPath string, fileNumber int, magic uint32) *BlockFile
 	newReader := bufio.NewReaderSize(fileReader, 64*1024)
 
 	return &BlockFileReader{
-		Dir:        dirPath,
-		FileNum:    fileNumber,
-		Magic:      magic,
-		reader:     newReader,
-		file:       fileReader,
+		Dir:     dirPath,
+		FileNum: fileNumber,
+		Magic:   magic,
+		reader:  newReader,
+		file:    fileReader,
+	}
+}
+
+// 直接传入文件路径来获取reader
+func NewBlockFileReaderByFilePath(blkFilePath string, magic uint32) *BlockFileReader {
+	fileReader, err := os.Open(blkFilePath)
+	if err != nil {
+		log.Println("error while reading blk file", err)
+		panic(err)
+	}
+	newReader := bufio.NewReaderSize(fileReader, 64*1024)
+
+	return &BlockFileReader{
+		Magic:  magic,
+		reader: newReader,
+		file:   fileReader,
 	}
 }
 
